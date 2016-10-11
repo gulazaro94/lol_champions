@@ -1,10 +1,11 @@
 require 'roda'
 
 class App < Roda
+  plugin :render
 
   route do |r|
     r.root do
-      'server'
+      view('index')
     end
   end
 
