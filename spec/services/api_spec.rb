@@ -1,4 +1,5 @@
 require 'spec_helper'
+require_relative '../../services/api'
 
 describe Services::Api do
 
