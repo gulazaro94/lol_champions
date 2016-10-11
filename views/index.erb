@@ -1,5 +1,51 @@
 
 
-<div class="jumbotron">
-  <h1>\o/ Champions</h1>
+<div id="index" class="jumbotron">
+  <h1 align="center">\o/ Champions</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th width="100">Champion</th>
+        <th>Recommended Items</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @data.each do |data| %>
+        <tr>
+
+          <td>
+            <div align="center">
+              <img src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/<%= data['key'] %>_0.jpg">
+              <div class="name"><%= data['name'] %></div>
+            </div>
+          </td>
+
+          <td>
+            <% data['items_by_map'].each do |item_by_map_data| %>
+                <div class="map-title">Map: <%= item_by_map_data['map'] %> / Title: <%= item_by_map_data['title'] %></div>
+                <div class="map-items">
+                  <% item_by_map_data['items_by_type'].each do |type, items| %>
+                    <div class="type-items">
+                      Type: <%= type %><br>
+                      <div>
+                        <% items.each do |item_node| %>
+                          <img src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/item/<%= item_node['id'] %>.png" title="<%= item_node['name'] %>" width="35">
+                        <% end %>
+                      </div>
+                    </div>
+                  <% end %>
+                  <div class="clear"></div>
+                </div>
+              </div>
+
+
+            <% end %>
+          </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
