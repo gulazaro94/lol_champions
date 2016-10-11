@@ -1,9 +1,17 @@
 require 'spec_helper'
 
-describe 'setup' do
+describe Services::Api do
 
-  it 'expect' do
-    expect(true).to be_truthy
+  before do
+    stub_request(:get, Services::Api::URL).
+     to_return(status: 200, body: '{"success": true}')
+
+  end
+
+  it '#get_data' do
+    data = Services::Api.new.get_data
+
+    expect(data).to eq({'success' => true})
   end
 
 end
