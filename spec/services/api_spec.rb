@@ -1,18 +1,11 @@
 require 'spec_helper'
-require_relative '../../services/api'
 
 describe Services::Api do
 
-  before do
-    stub_request(:get, Services::Api::URL).
-     to_return(status: 200, body: '{"success": true}')
+  it '.get_champions_data' do
+    data = Services::Api.get_champions_data
 
-  end
-
-  it '#get_data' do
-    data = Services::Api.new.get_data
-
-    expect(data).to eq({'success' => true})
+    expect(JSON.parse(data)).to eq({'success' => true})
   end
 
 end
